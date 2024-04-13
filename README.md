@@ -15,7 +15,7 @@ Prilad odvodenia vyrazu (3 * 3) - (3 * 3):
 Gramatika v EBNF forme ZADANIE 2:
 
 1. StateMachine -> (Statement) EOF;
-2. Statement -> [Commands] [Events] [ResetCommands] [InitState] {State}
+2. Statement -> Commands | Events | ResetCommands | InitState | State
 3. Commands -> "commands" "{" { Command } "}";
 4. Command -> Identifier "=" CHAR_LITERAL;
 5. Events -> "events" "{" { Event } "}";
