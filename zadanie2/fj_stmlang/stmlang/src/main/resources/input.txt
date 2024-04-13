@@ -1,0 +1,77 @@
+commands {
+    alarm             'a'
+    openDoor          'o'
+    openWindow        'w'
+    closeDoor         'c'
+    closeSafe         's'
+    closeWindow       'e'
+    lightOn           'l'
+    lightOff          't'
+    airConditionerOn  'b'
+    airConditionerOff 'n'
+}
+
+resetCommands {
+    alarm
+    openDoor
+}
+
+events {
+    safeUnlocked = 'U'
+    safeLocked   = 'L'
+    doorLocked   = 'C'
+    doorUnlocked = 'O'
+}
+
+state initState {
+    actions [doorUnlocked safeLocked]
+    closeDoor --> active
+}
+
+state active {
+    actions [doorLocked safeLocked]
+    lightOn --> waitingForAirConditionerAndWindow
+    airConditionerOn --> waitingForLightAndWindow
+    openWindow --> waitingForAirConditionerAndLight
+}
+
+state waitingForAirConditionerAndWindow {
+    airConditionerOn --> waitingForLight
+    openWindow --> waitingForAirConditioner
+    lightOff --> active
+}
+
+state waitingForLightAndWindow {
+    lightOn --> waitingForWindow
+    openWindow --> waitingForLight
+    airConditionerOff --> active
+}
+
+state waitingForAirConditionerAndLight {
+    lightOn --> waitingForAirConditioner
+    airConditionerOn --> waitingForLight
+    closeWindow --> active
+}
+
+state waitingForAirConditioner {
+    airConditionerOn --> safeOpened
+    lightOff --> waitingForAirConditionerAndLight
+    closeWindow --> waitingForAirConditionerAndWindow
+}
+
+state waitingForLight {
+    lightOn --> safeOpened
+    airConditionerOff --> waitingForAirConditionerAndLight
+    closeWindow --> waitingForLightAndWindow
+}
+
+state waitingForWindow {
+    openWindow --> safeOpened
+    lightOff --> waitingForLightAndWindow
+    airConditionerOff --> waitingForAirConditionerAndWindow
+}
+
+state safeOpened {
+    actions [doorLocked safeUnlocked]
+    closeSafe --> idle
+}
