@@ -84,7 +84,7 @@ public class Parser {
         match(TokenType.STATE);
         String stateName = symbol.attribute();
         //checking for initState
-        if(Objects.equals(stateName, "initState")){
+        if(definition.getInitialStateName() == null){
             definition.setInitialStateName(stateName);
         }
         consume(); // Move past the state name

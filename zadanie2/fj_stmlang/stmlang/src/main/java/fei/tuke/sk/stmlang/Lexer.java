@@ -42,8 +42,14 @@ public class Lexer {
             case '-':
                 if (peek() == '-') {
                     advance(); // Advance past '-'
-                    advance(); // Advance past '>'
-                    token = new Token(TokenType.ARROW, "-->");
+                    if(peek() == '>') {
+                        advance();
+                        token = new Token(TokenType.ARROW, "-->");
+                    }else{
+                        throw new StateMachineException("Invalid Arrow");
+                    }
+                }else{
+                    throw new StateMachineException("Invalid Arrow");
                 }
                 break;
             case '=':
