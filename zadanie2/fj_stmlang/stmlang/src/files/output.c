@@ -12,8 +12,8 @@ void state_waitingForWindow();
 void state_safeOpened();
 
 void state_initState() {
-	send_event('doorUnlocked');
-	send_event('safeLocked');
+	send_event('O');
+	send_event('L');
 	char ev;
 	while ((ev = read_command()) != '\0') {
 		switch (ev) {
@@ -30,8 +30,8 @@ void state_initState() {
 }
 
 void state_active() {
-	send_event('doorLocked');
-	send_event('safeLocked');
+	send_event('C');
+	send_event('L');
 	char ev;
 	while ((ev = read_command()) != '\0') {
 		switch (ev) {
@@ -172,13 +172,13 @@ void state_waitingForWindow() {
 }
 
 void state_safeOpened() {
-	send_event('doorLocked');
-	send_event('safeUnlocked');
+	send_event('C');
+	send_event('U');
 	char ev;
 	while ((ev = read_command()) != '\0') {
 		switch (ev) {
 			case 's':
-				return state_idle();
+				return;
 			case 'a':
 				return state_initState();
 			case 'o':

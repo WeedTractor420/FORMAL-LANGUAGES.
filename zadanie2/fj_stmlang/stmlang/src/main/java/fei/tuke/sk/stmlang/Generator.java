@@ -2,6 +2,7 @@ package fei.tuke.sk.stmlang;
 
 import java.io.IOException;
 import java.io.Writer;
+import java.util.Objects;
 
 public class Generator {
 
@@ -50,10 +51,12 @@ public class Generator {
         writer.write("void state_" + name + "() {\n");
 
         for (String action : state.getActions()) {
-            if (action != null) {
-                writer.write("\tsend_event('" + action + "');\n");
+            Character event = stateMachine.getEvents().get(action);
+            if (event != null) {
+                writer.write("\tsend_event('" + event + "');\n");
             }
         }
+
 
         writer.write("\tchar ev;\n");
         writer.write("\twhile ((ev = read_command()) != '\\0') {\n");
@@ -63,7 +66,11 @@ public class Generator {
             Character command = stateMachine.getCommands().get(transition.commandName());
             if (command != null) {
                 writer.write("\t\t\tcase '" + command + "':\n");
-                writer.write("\t\t\t\treturn state_" + transition.targetName() + "();\n");
+                if(!Objects.equals(transition.targetName(), "idle")) {
+                    writer.write("\t\t\t\treturn state_" + transition.targetName() + "();\n");
+                }else{
+                    writer.write("\t\t\t\treturn;\n");
+                }
             }
         }
 
