@@ -78,8 +78,11 @@ public class Generator {
     private void writeState(String name, StateDefinition state) throws IOException {
         writer.write("void state_" + name + "() {\n");
 
-        // Actions corresponding to state
+        // Check and write actions
         for (String action : state.getActions()) {
+            if (!stateMachine.getEvents().containsKey(action)) {
+                System.err.println("Warning: Action '" + action + "' defined in state '" + name + "' is not defined in global actions.");
+            }
             Character event = stateMachine.getEvents().get(action);
             if (event != null) {
                 writer.write("\tsend_event('" + event.toString().toLowerCase() + "');\n");
