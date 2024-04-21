@@ -12,8 +12,8 @@ void state_waitingForWindow();
 void state_safeOpened();
 
 void state_initState() {
-	send_event('O');
-	send_event('L');
+	send_event('o');
+	send_event('l');
 	char ev;
 	while ((ev = read_command()) != '\0') {
 		switch (ev) {
@@ -30,8 +30,8 @@ void state_initState() {
 }
 
 void state_active() {
-	send_event('C');
-	send_event('L');
+	send_event('c');
+	send_event('l');
 	char ev;
 	while ((ev = read_command()) != '\0') {
 		switch (ev) {
@@ -172,8 +172,8 @@ void state_waitingForWindow() {
 }
 
 void state_safeOpened() {
-	send_event('C');
-	send_event('U');
+	send_event('c');
+	send_event('u');
 	char ev;
 	while ((ev = read_command()) != '\0') {
 		switch (ev) {
