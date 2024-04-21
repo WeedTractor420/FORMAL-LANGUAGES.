@@ -53,10 +53,9 @@ public class Generator {
         for (String action : state.getActions()) {
             Character event = stateMachine.getEvents().get(action);
             if (event != null) {
-                writer.write("\tsend_event('" + event + "');\n");
+                writer.write("\tsend_event('" + event.toString().toLowerCase()+ "');\n");
             }
         }
-
 
         writer.write("\tchar ev;\n");
         writer.write("\twhile ((ev = read_command()) != '\\0') {\n");
