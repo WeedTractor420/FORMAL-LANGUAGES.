@@ -22,15 +22,14 @@ Gramatika v EBNF forme ZADANIE 2:
 6. Event -> Identifier "=" CHAR_LITERAL;
 7. ResetCommands -> "resetCommands" "{" { Identifier } "}";
 8. State -> "state" Identifier StateContent;
-9. InitState -> "state" "initState" StateContent;
-10. StateContent -> "{" [Action] { Transition } "}";
-11. Action -> "actions" "[" { Identifier } "]";
-12. Transition -> Identifier "->" Identifier;
-13. Identifier -> letter { letter | digit };
-14. CHAR_LITERAL -> "'" character "'";
-15. letter -> "a" | "b" | ... | "z" | "A" | ... | "Z";
-16. digit -> "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9";
-17. character -> /* all printable characters */;
-18. EOF -> /* end of file token */;
+9. StateContent -> "{" [Action] { Transition } "}";
+10. Action -> "actions" "[" { Identifier } "]";
+11. Transition -> Identifier "->" Identifier;
+12. Identifier -> letter { letter | digit };
+13. CHAR_LITERAL -> "'" character "'";
+14. letter -> "a" | "b" | ... | "z" | "A" | ... | "Z";
+15. digit -> "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9";
+16. character -> /* all printable characters */;
+17. EOF -> /* end of file token */;
 
 
