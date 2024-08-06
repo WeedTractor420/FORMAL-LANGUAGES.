@@ -1,3 +1,7 @@
+ZADANIE 1:
+
+Kalkulačka v Jave využíva gramatiku na rozpoznávanie a vyhodnocovanie aritmetických výrazov. Proces zahŕňa tvorbu lexera na tokenizáciu vstupného reťazca a parsera na syntaktickú analýzu tokenov a ich transformáciu do výrazu, ktorý môže byť vyhodnotený.
+
 Gramatika v EBNF forme ZADANIE 1:
 
 1. Calc -> Statement EOF;
@@ -12,6 +16,10 @@ Gramatika v EBNF forme ZADANIE 1:
 Prilad odvodenia vyrazu (3 * 3) - (3 * 3):
     Calc => Statement EOF => expr EOF => mul - mul EOF => exp - exp EOF => term - term EOF => (expr) - (expr) EOF => (mul) - (mul) EOF => (exp * exp) - (exp * exp) EOF => (temr * term) - (term * term) EOF => (NUMBER * NUMBER) - (NUMBER * NUMBER) EOF => (3 * 3) - (3 * 3) EOF
 
+
+ZADANIE 2:
+
+Program bude obsahovať lexer na tokenizáciu vstupného reťazca, parser na syntaktickú analýzu tokenov a generátor kódu na preklad do jazyka C. Gramatika v EBNF forme popisuje jednoduchý stavový automat s príkazmi, udalosťami, resetovacími príkazmi, iniciálnym stavom a stavmi.
 Gramatika v EBNF forme ZADANIE 2:
 
 1. StateMachine -> {Statement} EOF;
@@ -28,8 +36,6 @@ Gramatika v EBNF forme ZADANIE 2:
 12. Identifier -> letter { letter | digit };
 13. CHAR_LITERAL -> "'" character "'";
 14. letter -> "a" | "b" | ... | "z" | "A" | ... | "Z";
-15. digit -> "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9";
-16. character -> /* all printable characters */;
-17. EOF -> /* end of file token */;
-
-
+16. digit -> "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9";
+17. character -> /* all printable characters */;
+18. EOF -> /* end of file token */;
